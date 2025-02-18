@@ -1,0 +1,21 @@
+{
+    "name": "MBusCom",
+    "keywords": "m-bus,mbus,Serial,communication",
+    "description": "Serial M-Bus communication library",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Zeppelin500/MBusCom.git"
+    },
+    "version": "0.1.0",
+    "license": "GPL-3.0",
+    "frameworks": "arduino",
+    "platforms": ["atmelavr", "atmelsam", "espressif8266","espressif32","raspberrypi"],
+    "authors": {
+        "name": "Zeppelin500",
+        "email": "mbusinolib@gmail.com",
+        "maintainer": true
+    },
+    "examples": [
+        "examples/*/*.ino"
+    ]
+}

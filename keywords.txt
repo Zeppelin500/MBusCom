@@ -1,0 +1,26 @@
+#######################################
+# Syntax Coloring Map For MBusCom
+#######################################
+
+#######################################
+# Class (KEYWORD1)
+#######################################
+
+MBusCom KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin KEYWORD2
+clearRXbuffer KEYWORD2
+set_address KEYWORD2
+normalize KEYWORD2
+request_data KEYWORD2
+get_response KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+
