@@ -28,22 +28,28 @@ Include and instantiate the MBusCom class. The constructor takes the Serial Inte
 MBusCom(HardwareSerial *MbusSerial, uint8_t rxPin, uint8_t txPin);
 ```
 
-###```MBusCom.begin();```
+### begin
+```MBusCom.begin();```
 start the Serial communication
 
-###```MBusCom.normalize(byte address);```
+### normalize
+```MBusCom.normalize(byte address);```
 set the bus back
 
-###```MBusCom.set_address(byte oldaddress, byte newaddress);```
+### set_address
+```MBusCom.set_address(byte oldaddress, byte newaddress);```
 change the M-Bus address of a slave. Use 254 as oldaddress to change a single slave with unknown address.
 
-###```MBusCom.request_data(byte address)```
+### request_data
+```MBusCom.request_data(byte address)```
 Request RSP_UD telegrams. (Slave data records)
 
-###```MBusCom.get_response(byte *pdata, unsigned char len_pdata);```
+### get_response
+```MBusCom.get_response(byte *pdata, unsigned char len_pdata);```
 Get the slave response from the rx buffer.
 
-###```MBusCom.clearRXbuffer();```
+### clearRXbuffer
+```MBusCom.clearRXbuffer();```
 Clears the rx buffer, if some junk received
 
 
