@@ -19,37 +19,40 @@ Thanks to **HWHardsoft** and **TrystanLea** for parts of the M-Bus communication
 
 ## API
 
-### Class: `MBusCom`
+### Class: MBusCom
 
 Include and instantiate the MBusCom class. The constructor takes the Serial Interface and UART Pins.
 
-```c
-
-MBusCom(HardwareSerial *MbusSerial, uint8_t rxPin, uint8_t txPin);
-```
+```MBusCom(HardwareSerial *MbusSerial, uint8_t rxPin, uint8_t txPin);```
 
 ### begin
 ```MBusCom.begin();```
+
 start the Serial communication
 
 ### normalize
 ```MBusCom.normalize(byte address);```
+
 set the bus back
 
 ### set_address
 ```MBusCom.set_address(byte oldaddress, byte newaddress);```
+
 change the M-Bus address of a slave. Use 254 as oldaddress to change a single slave with unknown address.
 
 ### request_data
 ```MBusCom.request_data(byte address)```
+
 Request RSP_UD telegrams. (Slave data records)
 
 ### get_response
 ```MBusCom.get_response(byte *pdata, unsigned char len_pdata);```
+
 Get the slave response from the rx buffer.
 
 ### clearRXbuffer
 ```MBusCom.clearRXbuffer();```
+
 Clears the rx buffer, if some junk received
 
 
