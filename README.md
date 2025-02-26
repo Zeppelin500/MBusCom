@@ -1,5 +1,5 @@
 # MBusinoCom - an Arduino M-Bus data link layer communication library. 
-[![version](https://img.shields.io/badge/version-0.1.0-brightgreen.svg)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/version-0.1.1-brightgreen.svg)](CHANGELOG.md)
 [![license](https://img.shields.io/badge/license-GPL--3.0-orange.svg)](LICENSE)
 
 
@@ -7,7 +7,7 @@
 
 The **MBusCom** library enables Arduino devices to communicate with M-Bus Slaves thru a M-Bus Master (level converter) at the Data Link Layer
 
-Tested at ESPs, additional platforms will be supported in the future.
+Tested at ESPs, Arduino Mega, MKR and Raspberry Pico but should work with all kind of µCs.
 
 Together with the [**MBusinoLib**](https://github.com/Zeppelin500/MBusinoLib), you can build a M-Bus Master for reading out M-Bus Slaves.
 
@@ -24,6 +24,11 @@ Thanks to **HWHardsoft** and **TrystanLea** for parts of the M-Bus communication
 Include and instantiate the MBusCom class. The constructor takes the Serial Interface and UART Pins.
 
 ```MBusCom(HardwareSerial *MbusSerial, uint8_t rxPin, uint8_t txPin);```
+
+or
+
+```MBusCom(Serial1 *MbusSerial);```
+
 
 ### begin
 ```MBusCom.begin();```
