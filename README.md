@@ -1,5 +1,5 @@
 # MBusinoCom - an Arduino M-Bus data link layer communication library. 
-[![version](https://img.shields.io/badge/version-0.1.1-brightgreen.svg)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/version-0.1.2-brightgreen.svg)](CHANGELOG.md)
 [![license](https://img.shields.io/badge/license-GPL--3.0-orange.svg)](LICENSE)
 
 

@@ -27,6 +27,16 @@ MBusCom::MBusCom(HardwareSerial *MbusSerial, uint8_t rxPin, uint8_t txPin){
     _txPin = txPin;
     _MbusSerial = MbusSerial;
 }
+/*MBusCom::MBusCom(SerialUART *MbusSerial){
+    _rxPin = 0;
+    _txPin = 0;
+    _MbusSerial = MbusSerial;
+}*/
+MBusCom::MBusCom(HardwareSerial *MbusSerial){
+    _rxPin = 0;
+    _txPin = 0;
+    _MbusSerial = MbusSerial;
+}
 
 MBusCom::~MBusCom(void){}
 
@@ -39,7 +49,7 @@ void MBusCom::begin(){
   _MbusSerial->setRxBufferSize(256);
   _MbusSerial->begin(MBUS_BAUD_RATE, SERIAL_8E1, _rxPin, _txPin);
   #else
-  _MbusSerial->setRxBufferSize(256);
+  //_MbusSerial->setRxBufferSize(256);
   _MbusSerial->begin(MBUS_BAUD_RATE, SERIAL_8E1);
   #endif
 }

@@ -24,7 +24,7 @@ along with the MBusinoLib library.  If not, see <http://www.gnu.org/licenses/>.
 #include <Arduino.h>
 
 #define MBUS_BAUD_RATE 2400
-#define MBUS_ADDRESS 0xFE  // brodcast
+//#define MBUS_ADDRESS 0xFE  // brodcast
 #define MBUS_TIMEOUT 1000  // milliseconds
 #define MBUS_DATA_SIZE 255
 #define MBUS_GOOD_FRAME true
@@ -45,6 +45,7 @@ class MBusCom {
 public:
   
   MBusCom(HardwareSerial *MbusSerial ,uint8_t rxPin, uint8_t txPin);
+  MBusCom(HardwareSerial *MbusSerial);
   ~MBusCom();
 
   void begin();
@@ -57,7 +58,6 @@ public:
   
 protected:
 
-  uint8_t _hardwareSerialNr;
   uint8_t _rxPin;
   uint8_t _txPin;
 
