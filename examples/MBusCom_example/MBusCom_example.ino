@@ -16,9 +16,9 @@ Example of MBusCom with MBusinoLib decoding, Arduino M-Bus communication library
 
 #if defined(ESP32)
 HardwareSerial MbusSerial(1);
-MBusCom MBusCom(&MbusSerial,37,39); // The constructor takes the Serial Interface and UART Pins. Change UART Pins depends on your board.
+MBusCom mbus(&MbusSerial,37,39); // The constructor takes the Serial Interface and UART Pins. Change UART Pins depends on your board.
 #else
-MBusCom MBusCom(&Serial1); // The constructor takes the Serial Interface
+MBusCom mbus(&Serial1); // The constructor takes the Serial Interface
 #endif
 
 
@@ -26,7 +26,7 @@ unsigned long timerMbus = 5000;
 uint8_t mbusLoopStatus = 0;
 
 void setup() {
-  MBusCom.begin();  //<---------------------- MBusCom: set up the Serial interface fur M-Bus communication
+  mbus.begin();  //<---------------------- MBusCom: set up the Serial interface fur M-Bus communication
   Serial.begin(9600);
   delay(1500);
   Serial.println("startup");
@@ -41,14 +41,14 @@ void loop() {
     Serial.print("Request Address: ");
     Serial.print(SLAVE_MBUS_ADDRESS);
     Serial.println();
-    MBusCom.request_data(SLAVE_MBUS_ADDRESS); // <---------------------- MBusCom: request a record telegram from the slave
+    mbus.request_data(SLAVE_MBUS_ADDRESS); // <---------------------- MBusCom: request a record telegram from the slave
   }
 
   if(millis() - timerMbus > 1500 && mbusLoopStatus == 1){ // Receive and decode M-Bus Records
     mbusLoopStatus = 0;
     bool mbus_good_frame = false;
     byte mbus_data[MBUS_DATA_SIZE] = { 0 };
-    mbus_good_frame = MBusCom.get_response(mbus_data, sizeof(mbus_data)); // <---------------------- MBusCom: get the reveived telegram from the rx buffer
+    mbus_good_frame = mbus.get_response(mbus_data, sizeof(mbus_data)); // <---------------------- MBusCom: get the reveived telegram from the rx buffer
 
     if (mbus_good_frame) {
       int packet_size = mbus_data[1] + 6; 
