@@ -54,7 +54,9 @@ public:
   void set_address(byte oldaddress, byte newaddress);
   void normalize(byte address);
   void request_data(byte address);
+  void request_data(byte address, bool fcb);
   bool get_response(byte *pdata, unsigned char len_pdata);
+  bool available();
   
 protected:
 

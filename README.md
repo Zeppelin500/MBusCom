@@ -1,5 +1,5 @@
 # MBusinoCom - an Arduino M-Bus data link layer communication library. 
-[![version](https://img.shields.io/badge/version-0.1.4-brightgreen.svg)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/version-0.1.5-brightgreen.svg)](CHANGELOG.md)
 [![license](https://img.shields.io/badge/license-GPL--3.0-orange.svg)](LICENSE)
 
 
@@ -47,6 +47,7 @@ change the M-Bus address of a slave. Use 254 as oldaddress to change a single sl
 
 ### request_data
 ```MBusCom.request_data(byte address)```
+```MBusCom.request_data(byte address, bool fcb)```
 
 Request RSP_UD telegrams. (Slave data records)
 
@@ -54,6 +55,12 @@ Request RSP_UD telegrams. (Slave data records)
 ```MBusCom.get_response(byte *pdata, unsigned char len_pdata);```
 
 Get the slave response from the rx buffer.
+
+### available
+
+```bool MBusCom::available()```
+
+true if something in the rx buffer
 
 ### clearRXbuffer
 ```MBusCom.clearRXbuffer();```

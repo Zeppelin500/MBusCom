@@ -70,6 +70,14 @@ void MBusCom::request_data(byte address) {
   short_frame(address, 0x5b);
 }
 
+void MBusCom::request_data(byte address, bool fcb) {
+  byte c_field = 0x5b;
+    if(fcb == true){
+    c_field = 0x7b;
+  }
+  short_frame(address, c_field);
+}
+
 bool MBusCom::get_response(byte *pdata, unsigned char len_pdata) {
   byte bid = 0;             // current byte of response frame
   byte bid_end = 255;       // last byte of frame calculated from length byte sent
@@ -177,6 +185,16 @@ void MBusCom::set_address(byte oldaddress, byte newaddress) {
   data[12] = '\0';
   
   _MbusSerial->write((char*)data,12);
+}
+
+bool MBusCom::available(){
+
+  if(_MbusSerial->available() > 0){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 

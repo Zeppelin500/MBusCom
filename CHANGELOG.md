@@ -3,6 +3,13 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.5] - 2025-05-26
+
+### added
+
+- request with FCB
+- MBusCom::available()
+
 ## [0.1.4] - 2025-03-28
 
 ### Changed
