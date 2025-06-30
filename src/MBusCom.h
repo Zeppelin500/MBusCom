@@ -57,6 +57,8 @@ public:
   void request_data(byte address, bool fcb);
   bool get_response(byte *pdata, unsigned char len_pdata);
   bool available();
+  void application_reset(byte address);
+  uint8_t read_rxbuffer(byte *pdata, unsigned char len_pdata);// for debug use
   
 protected:
 
@@ -66,6 +68,7 @@ protected:
   HardwareSerial *_MbusSerial;
 
   void short_frame(byte address, byte C_field);
+  void control_frame(byte address, byte C_field, byte CI_field);
 
 };
 #endif

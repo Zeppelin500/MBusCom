@@ -62,7 +62,7 @@ void MBusCom::short_frame(byte address, byte C_field) {
   data[2] = address;
   data[3] = data[1] + data[2];
   data[4] = 0x16;
-  data[5] = '\0';
+  //data[5] = '\0';
   _MbusSerial->write((char *)data,5);
 }
 
@@ -76,6 +76,10 @@ void MBusCom::request_data(byte address, bool fcb) {
     c_field = 0x7b;
   }
   short_frame(address, c_field);
+}
+
+void MBusCom::application_reset(byte address) {
+  control_frame(address,0x53,0x50);
 }
 
 bool MBusCom::get_response(byte *pdata, unsigned char len_pdata) {
@@ -195,6 +199,32 @@ bool MBusCom::available(){
   else{
     return false;
   }
+}
+
+void MBusCom::control_frame(byte address, byte C_field, byte CI_field)
+{
+  byte data[10];
+  data[0] = MBUS_FRAME_LONG_START;
+  data[1] = 0x03;
+  data[2] = 0x03;
+  data[3] = MBUS_FRAME_LONG_START;
+  data[4] = C_field;
+  data[5] = address;
+  data[6] = CI_field;
+  data[7] = data[4] + data[5] + data[6];
+  data[8] = MBUS_FRAME_STOP;
+  data[9] = '\0';
+
+  _MbusSerial->write((char*)data,9);
+}
+
+uint8_t MBusCom::read_rxbuffer(byte *pdata, unsigned char len_pdata) {
+  uint8_t i = 0;             // current byte of response frame
+    while ((_MbusSerial->available()) && (i <= len_pdata)) {
+      pdata[i] = (byte)_MbusSerial->read();
+      i++;
+    }  
+  return i; 
 }
 
 

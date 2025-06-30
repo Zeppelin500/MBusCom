@@ -1,5 +1,5 @@
 # MBusinoCom - an Arduino M-Bus data link layer communication library. 
-[![version](https://img.shields.io/badge/version-0.1.5-brightgreen.svg)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/version-0.1.6-brightgreen.svg)](CHANGELOG.md)
 [![license](https://img.shields.io/badge/license-GPL--3.0-orange.svg)](LICENSE)
 
 
@@ -67,7 +67,17 @@ true if something in the rx buffer
 
 Clears the rx buffer, if some junk received
 
+### application reset
+```MBusCom.application_reset(byte address);```
 
+set the aplication of the slave back
+
+### read the RX buffer --> for debug use
+
+
+```uint8_t MBusCom.read_rxbuffer(byte *pdata, unsigned char len_pdata);```
+
+read the raw rx buffer 
 
 ## References
 
