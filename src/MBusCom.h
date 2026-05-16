@@ -27,6 +27,7 @@ along with the MBusinoLib library.  If not, see <http://www.gnu.org/licenses/>.
 //#define MBUS_ADDRESS 0xFE  // brodcast
 #define MBUS_TIMEOUT 1000  // milliseconds
 #define MBUS_DATA_SIZE 255
+#define MBUS_MAX_TELEGRAM_LEN 261
 #define MBUS_GOOD_FRAME true
 #define MBUS_BAD_FRAME false
 

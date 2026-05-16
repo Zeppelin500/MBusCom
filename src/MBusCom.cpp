@@ -43,13 +43,13 @@ MBusCom::~MBusCom(void){}
 void MBusCom::begin(){
 // ESP32 Syntax, for other platforms has to be extend with #ifdefinied(ESP32)....
   #if defined(ESP8266)
-  _MbusSerial->setRxBufferSize(256);
+  _MbusSerial->setRxBufferSize(MBUS_MAX_TELEGRAM_LEN + 10);
   _MbusSerial->begin(MBUS_BAUD_RATE, SERIAL_8E1);
   #elif defined(ESP32)
-  _MbusSerial->setRxBufferSize(256);
+  _MbusSerial->setRxBufferSize(MBUS_MAX_TELEGRAM_LEN + 10);
   _MbusSerial->begin(MBUS_BAUD_RATE, SERIAL_8E1, _rxPin, _txPin);
   #else
-  //_MbusSerial->setRxBufferSize(256);
+  //_MbusSerial->setRxBufferSize(MBUS_MAX_TELEGRAM_LEN + 10);
   _MbusSerial->begin(MBUS_BAUD_RATE, SERIAL_8E1);
   #endif
 }
@@ -83,9 +83,9 @@ void MBusCom::application_reset(byte address) {
 }
 
 bool MBusCom::get_response(byte *pdata, unsigned char len_pdata) {
-  byte bid = 0;             // current byte of response frame
-  byte bid_end = 255;       // last byte of frame calculated from length byte sent
-  byte bid_checksum = 255;  // checksum byte of frame (next to last)
+  uint16_t bid = 0;             // current byte of response frame
+  uint16_t bid_end = 255;       // last byte of frame calculated from length byte sent
+  uint16_t bid_checksum = 255;  // checksum byte of frame (next to last)
   byte len = 0;
   byte checksum = 0;
   bool long_frame_found = false;
@@ -95,7 +95,7 @@ bool MBusCom::get_response(byte *pdata, unsigned char len_pdata) {
 
   while (!frame_error && !complete_frame){
     j++;
-    if(j>255){
+    if(j>MBUS_MAX_TELEGRAM_LEN){
       frame_error = true;
     }
   while (_MbusSerial->available()) {
